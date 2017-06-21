@@ -1013,7 +1013,11 @@ implements EllipseArcShape2D, CircularShape2D, CirculinearElement2D, Cloneable {
         Collection<Point2D> xs = this.supportingCircle().intersections(c.supportingCircle());
 
         // Now find out if any of the interesection points are on the arc
-        Collection<Point2D> ls = xs.stream().filter(x -> this.contains(x)).collect(Collectors.toList());
+        java.util.ArrayList<Point2D> ls = new java.util.ArrayList<Point2D>();
+        for (Point2D x : xs) {
+            if (this.contains(x))
+                ls.add(x);
+        }
 
         return ls;
     }
